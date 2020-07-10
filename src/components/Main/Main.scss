@@ -1,0 +1,38 @@
+.main {
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+}
+
+.content-div {
+	height: 720px;
+	background-color: rgba(0,23,55,0.5);
+}
+
+.top-div {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-right: 25px;
+	margin-left: 55px;
+}
+
+h1 {
+	font-size: 50px;
+}
+
+.title.div {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+
+.wrapper {
+	display: flex;
+	justify-content: space-between;
+	margin-right: 70px;
+}
+
+.list-div {
+	width: 400px;
+}
