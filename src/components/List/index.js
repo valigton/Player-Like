@@ -11,7 +11,7 @@ const styles = makeStyles(() => ({
 		backgroundColor: 'transparent',
 		boxShadow: '0 2px 2px -3px white',
 		color: '#ffffff',
-		'& .PrivateTabIndicator-colorSecondary-4': {
+		'& .PrivateTabIndicator-root-2': {
 			backgroundColor: '#32ad65'
 		},
 		'& .MuiTab-root': {
@@ -60,7 +60,7 @@ export default function List() {
 	return (
 		<>
 			<Paper className={classes.root}>
-	      <Tabs value={value} onChange={handleChange}>
+	      <Tabs value={value} onChange={handleChange} >
 	        <Tab value="1" label="T1" />
 	        <Tab value="2" label="T2" />
 	        <Tab value="3" label="T3" />
