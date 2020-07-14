@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper, Tabs, Tab, Box, Typography } from '@material-ui/core';
+import { Paper, Tabs, Tab, Typography } from '@material-ui/core';
 
-import ExpansionPanel from '../ExpansionPanel/index.js'
+import ExpansionPanel from './ExpansionPanel.js';
+
+import api from '../../services/api.js';
 
 const styles = makeStyles(() => ({
 	root: {
 		backgroundColor: 'transparent',
-		boxShadow: '0 2px 2px -2px white',
+		boxShadow: '0 2px 2px -3px white',
 		color: '#ffffff',
 		'& .PrivateTabIndicator-colorSecondary-4': {
 			backgroundColor: '#32ad65'
 		},
 		'& .MuiTab-root': {
 			minWidth:'50px',
-		}
+		},
 	},
 }));
 
@@ -30,9 +32,9 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && (
-        <Box p={3}>
+        <div>
           <Typography>{children}</Typography>
-        </Box>
+        </div>
       )}
     </div>
   );
@@ -40,32 +42,57 @@ function TabPanel(props) {
 
 export default function List() {
 	const classes = styles();
-	const [value, setValue] = React.useState('1');
+	const [value, setValue] = useState('1');
+	const [data, setData] = useState([]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-	return(
+  useEffect(() => {
+  	async function loadEpisodes() {
+      const response = await api.get('/episodes/SHOW123.json');
+      setData(response.data);
+    }
+    loadEpisodes();
+  }, [])
+
+	return (
 		<>
 			<Paper className={classes.root}>
-	      <Tabs
-	        value={value}
-	        onChange={handleChange}
-	      >
+	      <Tabs value={value} onChange={handleChange}>
 	        <Tab value="1" label="T1" />
 	        <Tab value="2" label="T2" />
 	        <Tab value="3" label="T3" />
 	      </Tabs>
 	    </Paper>
 	    <TabPanel value={value} index="1">
-	        <ExpansionPanel />
+	    	{data ? 
+	    		data.map(episode => (
+	    			episode ? 
+		        	<ExpansionPanel 
+		        		id={episode.ID} 
+		        		img={episode.Image} 
+		        		synp={episode.Synopsis} 
+		        		title={episode.Title}
+		        	/>
+	        	: ''
+	    		))
+	    	: ''}
 	    </TabPanel>
 	    <TabPanel value={value} index="2">
-	        Item Two
-	    </TabPanel>
-	    <TabPanel value={value} index="3">
-	        Item Three
+	    	{data ? 
+	    		data.map(episode => (
+	    			episode ? 
+		        	<ExpansionPanel 
+		        		id={episode.ID} 
+		        		img={episode.Image} 
+		        		synp={episode.Synopsis} 
+		        		title={episode.Title}
+		        	/>
+	        	: ''
+	    		))
+	    	: ''}
 	    </TabPanel>
     </>
 	)

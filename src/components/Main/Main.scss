@@ -6,7 +6,7 @@
 
 .content-div {
 	height: 720px;
-	background-color: rgba(0,23,55,0.5);
+	background-color: rgba(0,0,0,0.6);
 }
 
 .top-div {
@@ -35,4 +35,11 @@ h1 {
 
 .list-div {
 	width: 400px;
+}
+
+.subtitle {
+	font-size: 22px;
+	font-family: nunito;
+	text-transform: uppercase;	
+	font-weight: lighter;
 }
