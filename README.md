@@ -1,6 +1,9 @@
 # `Player-Like`
 Test front-end Agile Content
 
+![image info](./public/Player-Like.png)
+
+
 ## Available Scripts
 In the project directory, you can run:
 
