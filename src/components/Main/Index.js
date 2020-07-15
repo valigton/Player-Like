@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IconButton } from '@material-ui/core';
+import { IconButton, Grid } from '@material-ui/core';
 
 import './Main.scss'
 
@@ -22,26 +22,24 @@ export default function Main() {
   }, [])
 
   return (
-    <> 
-      <div className={'main'} style={{backgroundImage:` url(${image})`}}>
-      	<div className={'content-div'}>
-      		<div className={'top-div'}>
-      			<div className={'title-div'}>
-  						<h1>{data.Title}</h1>
-  						<p className={'subtitle'}>80% Indicado / Terror / {data.Year} / EUA / 14</p>
-      			</div>
-      			<div>
-      				<IconButton><img src={close} alt="button-close"/></IconButton>
-      			</div>
-      		</div>
-      		<div className={'wrapper'}>
-      			<div></div>
-      			<div className={'list-div'}>
-      				<List />
-      			</div>
-      		</div>
-      	</div>
-      </div>
-    </>
+    <Grid container className={'main'} style={{backgroundImage:` url(${image})`}}>
+    	<Grid item md={12} lg={12} xl={12} className={'content'}>
+    		<div className={'top'}>
+    			<div className={'title'}>
+						<h1>{data.Title}</h1>
+						<p className={'subtitle'}>80% Indicado / Terror / {data.Year} / EUA / 18</p>
+    			</div>
+    			<div>
+    				<IconButton><img src={close} alt="button-close"/></IconButton>
+    			</div>
+    		</div>
+    		<Grid container spacing={8} md={12} lg={12} xl={12} >
+    			<Grid item md={7} lg={7} xl={7} ></Grid>
+    			<Grid item md={5} lg={5} xl={5} >
+    				<List />
+    			</Grid>
+    		</Grid>
+    	</Grid>
+    </Grid>
   );
 }

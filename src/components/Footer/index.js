@@ -25,7 +25,7 @@ const styles = makeStyles(() => ({
 		backgroundColor: 'transparent',
 		boxShadow: '0 2px 2px -3px white',
 		color: '#ffffff',
-		'& .PrivateTabIndicator-root-2': {
+		'& .MuiTabs-indicator': {
 			backgroundColor: '#32ad65'
 		},
 		'& .MuiTab-root': {
