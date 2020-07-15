@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@material-ui/core';
 
@@ -22,19 +22,24 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ExpansionPanel({ id, img, synp, title })  {
   const classes = useStyles();
+  const [expanded, setExpanded] = useState(false);
   id = id.slice(5, 6);
 
+  const handleChange = (id) => (event, isExpanded) => {
+    setExpanded(isExpanded ? id : false);
+  }
+
   return (
-      <Accordion className={classes.root}>
-        <AccordionSummary expandIcon={<img src={Play} alt="Play Icon"/>}>
-          <Typography className={classes.heading}>{id} {title}</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <div>
-            <img src={img} width={350} alt="Episode"/>
-            <p>{synp}</p>
-          </div>
-        </AccordionDetails>
-      </Accordion>
+    <Accordion className={classes.root} expanded={expanded === id} onChange={handleChange(id)}>
+      <AccordionSummary expandIcon={<img src={Play} alt="Play Icon"/>}>
+        <Typography className={classes.heading}>{id} {title}</Typography>
+      </AccordionSummary>
+      <AccordionDetails>
+        <div>
+          <img src={img} width={350} alt="episode-preview"/>
+          <p>{synp}</p>
+        </div>
+      </AccordionDetails>
+    </Accordion>
   );
 }

@@ -44,10 +44,15 @@ export default function List() {
 	const classes = styles();
 	const [value, setValue] = useState('1');
 	const [data, setData] = useState([]);
+	const [expanded, setExpanded] = useState(false);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  const handleExpanded = (id) => (event, isExpanded) => {
+  	setExpanded(isExpanded ? id : false);
+  }
 
   useEffect(() => {
   	async function loadEpisodes() {
@@ -75,12 +80,28 @@ export default function List() {
 		        		img={episode.Image} 
 		        		synp={episode.Synopsis} 
 		        		title={episode.Title}
+		        		expanded={expanded}
+		        		handleExpanded={handleExpanded}
 		        	/>
 	        	: ''
 	    		))
 	    	: ''}
 	    </TabPanel>
 	    <TabPanel value={value} index="2">
+	    	{data ? 
+	    		data.map(episode => (
+	    			episode ? 
+		        	<ExpansionPanel 
+		        		id={episode.ID} 
+		        		img={episode.Image} 
+		        		synp={episode.Synopsis} 
+		        		title={episode.Title}
+		        	/>
+	        	: ''
+	    		))
+	    	: ''}
+	    </TabPanel>
+	    <TabPanel value={value} index="3">
 	    	{data ? 
 	    		data.map(episode => (
 	    			episode ? 
