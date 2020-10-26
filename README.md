@@ -1,8 +1,6 @@
 # `Player-Like`
 Front-end test 
 
-Agile Content
-
 ![image info](./public/Player-Like.png)
 
 ### `yarn install`
